@@ -34,3 +34,19 @@ Mac:
 ```
 docker run -t -i burrito/flask bash
 ```
+##Stop/Delete Container
+
+```
+docker stop CONTAINER ID
+docker rm CONTAINER ID
+```
+
+Stop then delete all containers
+```
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+```
+Delete all images
+```
+docker rmi $(docker images -q)
+```
