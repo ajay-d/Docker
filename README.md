@@ -16,6 +16,7 @@ Pull image
 ```
 docker pull burrito/flask
 ```
+Image is based off of [Scipy Notebook](https://github.com/jupyter/docker-stacks/tree/master/scipy-notebook)
 
 Run Notebook
 ```
