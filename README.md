@@ -21,7 +21,7 @@ Run Notebook
 ```
 docker run -d -p 8888:8888 jupyter/scipy-notebook
 ```
-Visit http://IP:8888/ for Jupyter Notebook
+Visit <http://192.168.99.101:8888/> (with the noted IP) for Jupyter Notebook
 
 Windows:
 ```
