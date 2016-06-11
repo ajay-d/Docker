@@ -35,6 +35,8 @@ Mac:
 ```
 docker run -t -i burrito/flask bash
 ```
+Exit terminal with `exit` command
+
 ##Stop/Delete Container
 
 ```
