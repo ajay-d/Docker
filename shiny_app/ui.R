@@ -26,7 +26,7 @@ shinyUI(pageWithSidebar(
                         tags$br(),
                         tags$p("Reload to refresh canvas"),
                         tags$script(src='mouse_draw.js'),
-                        actionButton("do", "Score Image")),
+                        actionButton("score", "Score Image")),
                plotOutput('distPlot')), 
       tabPanel(title="Supplemental Plots", value=2)
       , id = "conditionedPanels"
