@@ -1,4 +1,4 @@
-# Docker and Flask
+# MNIST demo with Docker, Flask, Shiny and Tensorflow
 Docker images and Flask demo
 
 ##Image:
