@@ -49,3 +49,5 @@ RUN gdebi shiny-server-1.4.2.786-amd64.deb -n
 
 WORKDIR /home/work
 RUN cat R --version
+RUN apt-cache showpkg shiny-server
+#CMD shiny-server
