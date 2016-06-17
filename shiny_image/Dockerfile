@@ -36,9 +36,10 @@ RUN su - -c "R -e \"install.packages(c( \
    'httr', \
    'jsonlite', \
    'lubridate', \
+   'rbokeh', \
+   'Rcpp', \
    'shiny', \
    'stringr', \
-   'Rcpp', \
    'tidyr' \
 ), repos = 'http://cloud.r-project.org/')\""
 
