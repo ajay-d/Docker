@@ -29,6 +29,7 @@ RUN apt-get update && apt-get upgrade -y \
 #RUN su - -c "R -e \"install.packages('shiny', repos = 'http://cran.rstudio.com/')\""
 
 RUN su - -c "R -e \"install.packages(c( \
+   'curl', \ 
    'dplyr', \
    'ggplot2', \
    'ggvis', \

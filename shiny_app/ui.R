@@ -17,7 +17,8 @@ shinyUI(pageWithSidebar(
       tabPanel(title="Main Image Scoring", value=1,
                
                tags$head(tags$style("#container { position: relative; }
-                                    #imageView { border: 1px solid #000; }")),
+                                     #imageView { border: 1px solid #000; }")),
+               tags$head(tags$script(src = "image_save.js")),
                
                h5('Draw a number with the mouse'),
                tags$p("Release click to stop drawing"),
@@ -27,6 +28,8 @@ shinyUI(pageWithSidebar(
                         tags$p("Reload to refresh canvas"),
                         tags$script(src='mouse_draw.js'),
                         actionButton("score", "Score Image")),
+               # a shiny element to display unformatted text
+               verbatimTextOutput("results"),
                plotOutput('distPlot')), 
       tabPanel(title="Supplemental Plots", value=2)
       , id = "conditionedPanels"

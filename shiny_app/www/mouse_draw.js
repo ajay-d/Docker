@@ -1,7 +1,3 @@
-/* © 2009 ROBO Design
- * http://www.robodesign.ro
- */
-
 // Keep everything in anonymous function, called on window load.
 if(window.addEventListener) {
 window.addEventListener('load', function () {
@@ -90,5 +86,3 @@ window.addEventListener('load', function () {
   init();
 
 }, false); }
-
-// vim:set spell spl=en fo=wan1croql tw=80 ts=2 sw=2 sts=2 sta et ai cin fenc=utf-8 ff=unix:
