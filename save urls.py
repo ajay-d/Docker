@@ -5,21 +5,14 @@ import urllib
 import requests
 import platform
 
-os.environ["KERAS_BACKEND"] = "tensorflow"
-
-from io import BytesIO
-from keras import backend as K
-
 import numpy as np
 import pandas as pd
 
 print(sys.version)
-print(K.backend())
-print(os.getcwd())
-print(sys.path)
-
-print(sys.version)
 print('Python', platform.python_version())
+
+print(sys.path)
+print(os.getcwd())
 
 if os.path.exists("H:\image-app"):
     os.chdir("H:\image-app")
@@ -27,7 +20,9 @@ if os.path.exists("H:\image-app"):
 print(os.getcwd())
 
 search_term = 'golden retriever'
+#https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/paging-images
 n_urls = 10
+cur_offset = 0
 
 headers = {
     'Content-Type': 'multipart/form-data',
@@ -41,7 +36,7 @@ os.chdir(search_term)
 params = urllib.parse.urlencode({
     'q': search_term,
     'count': n_urls,
-    'offset': '0',
+    'offset': cur_offset,
     'mkt': 'en-us',
     #'safeSearch': 'Moderate',
     'safeSearch': 'Off',
