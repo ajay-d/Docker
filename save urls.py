@@ -11,6 +11,7 @@ from io import BytesIO
 from keras import backend as K
 
 import numpy as np
+import pandas as pd
 
 print(sys.version)
 print(K.backend())
@@ -47,8 +48,13 @@ params = urllib.parse.urlencode({
 })
 
 r = requests.get("https://api.cognitive.microsoft.com/bing/v5.0/images/search?%s" % params, headers=headers)
+r.json()['totalEstimatedMatches']
 
 if r.ok:
+    RAW = []
+    REDIRECT = []
+    ID = []
+    HW = []
     for i in np.arange(n_urls):
         raw_link = r.json()['value'][i]['contentUrl']
         match_object = re.search('r=(http.+)&', raw_link)
@@ -56,3 +62,16 @@ if r.ok:
         redirect_link = re.sub('%2f', '/', redirect_link)
         redirect_link = re.sub('%3a', ':', redirect_link)
         print(redirect_link)
+        RAW.append(raw_link)
+        REDIRECT.append(redirect_link)
+        ID.append(r.json()['value'][i]['imageId'])
+        HW.append((r.json()['value'][i]['height'], r.json()['value'][i]['width']))
+
+df = pd.DataFrame(ID, columns=['ID'])
+df['url'] = REDIRECT
+df['raw_url'] = RAW
+df_hw = pd.DataFrame(HW, columns=['height', 'width'])
+df = pd.concat([df, df_hw], axis=1)
+
+#df.to_csv('URLs.gzip', index = False, compression='gzip')
+df.to_csv('URLs.csv', index = False)
