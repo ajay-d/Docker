@@ -3,7 +3,7 @@ Docker images to demonstrate a Shiny app calling Flask+Tensorflow for model scor
 
 
 
-##Stop/Delete Container
+## Stop/Delete Container
 
 ```
 docker stop CONTAINER ID
