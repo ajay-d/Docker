@@ -7,8 +7,9 @@ import requests
 os.environ["KERAS_BACKEND"] = "tensorflow"
 
 from io import BytesIO
-from skimage import io, img_as_float
 from keras import backend as K
+from skimage import io, img_as_float
+from skimage.transform import rescale, resize
 
 import numpy as np
 import pandas as pd
@@ -21,8 +22,10 @@ if os.path.exists("H:\image-app"):
     os.chdir("H:\image-app")
 
 print(os.getcwd())
+root_dir = os.getcwd()
+os.chdir(root_dir)
 
-dir_list = ['golden retriever']
+dir_list = ['bikini']
 
 #To hold the directory, image ID and image array
 IMAGES = []
@@ -39,5 +42,14 @@ for dir in dir_list:
             img = io.imread(BytesIO(req.content))
             IMAGES.append((dir, df.loc[row, 'ID'], img_as_float(img)))
 
+df_binary = pd.DataFrame(IMAGES, columns=['label', 'ID', 'image'])
+img.shape
+
+os.chdir(root_dir)
+print(row)
 io.imsave('test.jpg', img)
-io.imsave('test2.jpg', img_as_float(img))
+io.imsave('test_float.jpg', img_as_float(img))
+io.imsave('test_resize.jpg', resize(img, (1600, 1600)))
+
+len(IMAGES)
+io.imsave('test.jpg',IMAGES[0][2])

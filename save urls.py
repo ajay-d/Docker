@@ -19,19 +19,20 @@ if os.path.exists("H:\image-app"):
 
 print(os.getcwd())
 
-search_term = 'golden retriever'
+search_term = 'bikini'
+
+if not os.path.exists(search_term):
+    os.mkdir(search_term)
+os.chdir(search_term)
+
 #https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/paging-images
-n_urls = 10
-cur_offset = 0
+n_urls = 100
+cur_offset = 400
 
 headers = {
     'Content-Type': 'multipart/form-data',
     'Ocp-Apim-Subscription-Key': '3205df368d50445ca01087388f1c8b8b',
 }
-
-if not os.path.exists(search_term):
-    os.mkdir(search_term)
-os.chdir(search_term)
 
 params = urllib.parse.urlencode({
     'q': search_term,
@@ -56,6 +57,8 @@ if r.ok:
         redirect_link = match_object.group(1)
         redirect_link = re.sub('%2f', '/', redirect_link)
         redirect_link = re.sub('%3a', ':', redirect_link)
+        redirect_link = re.sub('%3d', '=', redirect_link)
+        redirect_link = re.sub('%26', '&', redirect_link)
         print(redirect_link)
         RAW.append(raw_link)
         REDIRECT.append(redirect_link)
@@ -69,4 +72,12 @@ df_hw = pd.DataFrame(HW, columns=['height', 'width'])
 df = pd.concat([df, df_hw], axis=1)
 
 #df.to_csv('URLs.gzip', index = False, compression='gzip')
+df_old = pd.read_csv('URLs.csv')
+df_old.shape
+df.shape
+df = pd.concat([df, df_old], axis=0)
+df.shape
+
 df.to_csv('URLs.csv', index = False)
+df.tail()
+df_old.tail()
