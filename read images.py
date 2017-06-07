@@ -37,13 +37,17 @@ for dir in dir_list:
     for row in np.arange(df.shape[0]):
         if row % 10 == 0:
             print(row)
-        req = requests.get(df.loc[row, 'url'])
+        try:
+            req = requests.get(df.loc[row, 'url'])
+        except Exception as e:
+            print('timeout')
         if req.ok:
             try:
                 img = io.imread(BytesIO(req.content))
                 IMAGES.append((dir, df.loc[row, 'ID'], img_as_float(img)))
             except Exception as e:
                 print('row', row)
+    os.chdir('..')
 
 df_binary = pd.DataFrame(IMAGES, columns=['label', 'ID', 'image'])
 os.chdir(root_dir)
