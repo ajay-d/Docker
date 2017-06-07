@@ -33,19 +33,26 @@ for dir in dir_list:
     os.chdir(dir)
     df = pd.read_csv('URLs.csv')
     print(df.shape)
-    for row in np.arange(5):
-    #for row in np.arange(df.shape[0]):
+    #for row in np.arange(5):
+    for row in np.arange(df.shape[0]):
         if row % 10 == 0:
             print(row)
         req = requests.get(df.loc[row, 'url'])
         if req.ok:
-            img = io.imread(BytesIO(req.content))
-            IMAGES.append((dir, df.loc[row, 'ID'], img_as_float(img)))
+            try:
+                img = io.imread(BytesIO(req.content))
+                IMAGES.append((dir, df.loc[row, 'ID'], img_as_float(img)))
+            except Exception as e:
+                print('row', row)
 
 df_binary = pd.DataFrame(IMAGES, columns=['label', 'ID', 'image'])
-img.shape
-
 os.chdir(root_dir)
+df_binary.to_csv('Images.csv', index = False)
+
+row
+df.loc[row, 'ID']
+
+img.shape
 print(row)
 io.imsave('test.jpg', img)
 io.imsave('test_float.jpg', img_as_float(img))

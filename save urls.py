@@ -19,7 +19,8 @@ if os.path.exists("H:\image-app"):
 
 print(os.getcwd())
 
-search_term = 'bikini'
+#string bikini
+search_term = 'string bikini'
 
 if not os.path.exists(search_term):
     os.mkdir(search_term)
@@ -27,7 +28,7 @@ os.chdir(search_term)
 
 #https://docs.microsoft.com/en-us/azure/cognitive-services/bing-image-search/paging-images
 n_urls = 100
-cur_offset = 400
+cur_offset = 900
 
 headers = {
     'Content-Type': 'multipart/form-data',
